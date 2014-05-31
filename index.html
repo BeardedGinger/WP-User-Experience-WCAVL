@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>WordPress UX - WCAVL</title>
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+		<script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>WordPress User Experience</h1>
+				</section>
+
+				<section>
+					<h1>About You</h1>
+				</section>
+
+				<section>
+					<h1>About Me</h1>
+				</section>
+
+				<section>
+					<section>
+						<img src="images/nc-state.png" alt="j" />
+					</section>
+					<section data-background="images/unc.jpg">
+					</section>
+				</section>
+
+				<section data-background="images/Tomas.jpg">
+				</section>
+				<section data-background="images/Tomas.jpg">
+					<h1>awwww</h1>
+				</section>
+
+				<section data-background="images/wordpress.png" background-size="500px">
+					<h1>WordPress</h1>
+				</section>
+
+				<section>
+					<section id="fragments">
+					<h2>"Decisions, not Options"</h2>
+						<li class="fragment">CPTs</li>
+						<li class="fragment">Custom Taxonomies</li>
+						<li class="fragment">Role</li>
+						<li class="fragment">Additional Access Control</li>
+					</section>
+				</section>
+
+				<section>
+					<h1>Real World Example</h1>
+				</section>
+
+				<section>
+					<h2>Register a "Staff" custom post type</h2>
+					<pre>
+						<code>
+add_action( 'init', 'codex_sfaff_init' );
+/**
+ * Register a book post type.
+ *
+ * @link http://codex.wordpress.org/Function_Reference/register_post_type
+ */
+function codex_staff_init() {
+	$labels = array(
+		'name'               => _x( 'Staff Member', 'post type general name', 'your-plugin-textdomain' ),
+		'singular_name'      => _x( 'Staff Member', 'post type singular name', 'your-plugin-textdomain' ),
+		'menu_name'          => _x( 'Staff Members', 'admin menu', 'your-plugin-textdomain' ),
+		'name_admin_bar'     => _x( 'Staff Member', 'add new on admin bar', 'your-plugin-textdomain' ),
+		'add_new'            => _x( 'Add New', 'Staff Member', 'your-plugin-textdomain' ),
+		'add_new_item'       => __( 'Add New Staff Member', 'your-plugin-textdomain' ),
+		'new_item'           => __( 'New Staff Member', 'your-plugin-textdomain' ),
+		'edit_item'          => __( 'Edit Staff Member', 'your-plugin-textdomain' ),
+		'view_item'          => __( 'View Staff Member', 'your-plugin-textdomain' ),
+		'all_items'          => __( 'All Staff Members', 'your-plugin-textdomain' ),
+		'search_items'       => __( 'Search Staff Members', 'your-plugin-textdomain' ),
+		'parent_item_colon'  => __( 'Parent Staff Member:', 'your-plugin-textdomain' ),
+		'not_found'          => __( 'No books found.', 'your-plugin-textdomain' ),
+		'not_found_in_trash' => __( 'No books found in Trash.', 'your-plugin-textdomain' ),
+	);
+
+	$args = array(
+		'labels'             => $labels,
+		'public'             => true,
+		'publicly_queryable' => true,
+		'show_ui'            => true,
+		'show_in_menu'       => true,
+		'query_var'          => true,
+		'rewrite'            => array( 'slug' => 'staff-member' ),
+		'capability_type'    => 'post',
+		'has_archive'        => true,
+		'hierarchical'       => false,
+		'menu_position'      => null,
+		'supports'           => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments' )
+	);
+
+	register_post_type( 'staff-member', $args );
+}
+						</code>
+					</pre>
+				</section>
+
+				<section data-background="images/doc-brown.jpg">
+				</section>
+
+				<section data-background="images/doc-brown.jpg">
+					<h1>"You're Gonna See Some Serious Sh*t."</h1>
+				</section>
+
+				<section>
+					<h3><code>register_post_type();</code></h3>
+					<h2>It's just a template for your custom content</h2>
+				</section>
+
+				<section>
+					<h1>Let's start with the most obvious...</h1>
+					<img src="images/staff-in-menu.png" />
+				</section>
+
+				<section>
+					<h2>What does a thumbtack have to do with staff members?</h2>
+				</section>
+
+				<section>
+					http://melchoyce.github.io/dashicons/
+				</section>
+
+				<section>
+					<pre>
+						<code>
+'menu_icon' => 'dashicons_businessman'
+						</code>
+					</pre>
+					<img src="images/staff-business.png" />
+				</section>
+				<section>
+					<pre>
+						<code>'supports' => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments' )</code>
+					</pre>
+				</section>
+
+				<section>
+					<img src="images/supports.png" />
+				</section>
+
+				<section>
+					<pre><code>'supports' => array( 'title', 'thumbnail', 'revisions' )</code></pre>
+				</section>
+
+				<section>
+					<h3>Throw in some magic</h3>
+					<img src="images/acf.png" />
+				</section>
+
+				<section>
+					<img src="images/supports-after.png" />
+				</section>
+
+				<section>
+					<h2>"But there are two spots to enter a "Title"..."</h2>
+				</section>
+
+				<section>
+					<pre>
+						<code>
+add_filter('gettext','custom_staff_title');
+
+function custom_staff_title( $input ) {
+
+    global $post_type;
+
+    if( is_admin() && 'Enter title here' == $input && 'mandr_staff' == $post_type )
+        return 'Enter Staff Member&apos;s Name';
+
+    return $input;
+}
+						</code>
+					</pre>
+				</section>
+
+				<section>
+					<img src="images/edited-title.png" />
+				</section>
+
+				<section>
+					<img src="images/post-published.png" />
+				</section>
+
+				<section>
+					<h1>I didn't publish no post!</h1>
+				</section>
+
+				<section>
+					<pre>
+						<code>
+function set_messages($messages) {
+	global $post, $post_ID;
+	$post_type = get_post_type( $post_ID );
+
+	$obj = get_post_type_object($post_type);
+	$singular = $obj->labels->singular_name;
+
+	$messages[$post_type] = array(
+	0 => '', // Unused. Messages start at index 1.
+	1 => sprintf( __($singular.' updated. <a href="%s">View '.strtolower($singular).'</a>'), esc_url( get_permalink($post_ID) ) ),
+	2 => __('Custom field updated.'),
+	3 => __('Custom field deleted.'),
+	4 => __($singular.' updated.'),
+	5 => isset($_GET['revision']) ? sprintf( __($singular.' restored to revision from %s'), wp_post_revision_title( (int) $_GET['revision'], false ) ) : false,
+	6 => sprintf( __($singular.' published. <a href="%s">View '.strtolower($singular).'</a>'), esc_url( get_permalink($post_ID) ) ),
+	7 => __('Page saved.'),
+	8 => sprintf( __($singular.' submitted. <a target="_blank" href="%s">Preview '.strtolower($singular).'</a>'), esc_url( add_query_arg( 'preview', 'true', get_permalink($post_ID) ) ) ),
+	9 => sprintf( __($singular.' scheduled for: <strong>%1$s</strong>. <a target="_blank" href="%2$s">Preview '.strtolower($singular).'</a>'), date_i18n( __( 'M j, Y @ G:i' ), strtotime( $post->post_date ) ), esc_url( get_permalink($post_ID) ) ),
+	10 => sprintf( __($singular.' draft updated. <a target="_blank" href="%s">Preview '.strtolower($singular).'</a>'), esc_url( add_query_arg( 'preview', 'true', get_permalink($post_ID) ) ) ),
+	);
+
+	return $messages;
+}
+						</code>
+					</pre>
+				</section>
+
+				<section>
+					<img src="images/staff-published.png" />
+				</section>
+
+				<section>
+					<h1>What have we learned?</h1>
+				</section>
+
+				<section>
+					<h2>This is too much work and I ain't got time for this crap</h2>
+				</section>
+
+				<section>
+					https://github.com/MandRMarketing/MandR-Core-Classes
+					https://github.com/MandRMarketing/Slide-CPT
+				</section>
+
+				<section>
+					<h1>Bonus things from left field</h1>
+				</section>
+
+				<section data-background="images/fod.jpg">
+				</section>
+
+				<section data-background="images/fod-blur.jpg">
+					<h1 style="color: #333">If you style it...</h1>
+				</section>
+
+				<section data-background="images/fod-blur.jpg">
+					<h2 style="color: #333">They'll probably never use it but you should still style it anyway!</h2>
+				</section>
+
+				<section>
+					https://github.com/BeardedGinger/WP-Kitchen-Sink-Draft
+					https://wordpress.org/plugins/monster-widget/
+				</section>
+
+				<section>
+					<h2>Kill editing in the dashboard</h2>
+				</section>
+
+				<section>
+					<pre>
+						<code>
+define('DISALLOW_FILE_EDIT', true);
+						</code>
+					</pre>
+				</section>
+
+				<section>
+					<h1>No blog?</h1>
+					<h2>Don't hijack the posts!</h2>
+				</section>
+
+				<section>
+					<h1>Clean up after yourself</h1>
+				</section>
+
+				<section>
+					http://joshmallard.com<br>
+					http://twitter.com/aBearded_Ginger<br>
+					https://github.com/BeardedGinger
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
